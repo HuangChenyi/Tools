@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<keywordlist>
+  <keyword language="SQL">
+    <kw>OR</kw>
+    <kw>AND</kw>
+    <kw>SELECT</kw>
+    <kw>INSERT</kw>
+    <kw>INTO</kw>
+    <kw>VALUES</kw>
+    <kw>UPDATE</kw>
+    <kw>DELETE</kw>
+    <kw>FROM</kw>
+    <kw>WHERE</kw>
+    <kw>DEFAULT</kw>
+    <kw>DECLARE</kw>
+    <kw>SET</kw>
+    <kw>EXEC</kw>
+    <kw>bit</kw>
+    <kw>int</kw>
+    <kw>float</kw>
+    <kw>double</kw>
+    <kw>numeric</kw>
+    <kw>char</kw>
+    <kw>varchar</kw>
+    <kw>nvarchar</kw>
+    <kw>nchar</kw>
+    <kw>text</kw>
+    <kw>ntext</kw>
+    <kw>xml</kw>
+    <kw>datetime</kw>
+    <kw>numeric</kw>
+    <kw>money</kw>
+  </keyword>
+  <keyword language="CSharp">
+    <kw>public</kw>
+    <kw>private</kw>
+    <kw>protected</kw>
+    <kw>void</kw>
+    <kw>string</kw>
+    <kw>int</kw>
+    <kw>bool</kw>
+    <kw>DateTime</kw>
+    <kw>float</kw>
+    <kw>double</kw>
+    <kw>decimal</kw>
+    <kw>this</kw>
+    <kw>DataTable</kw>
+    <kw>return</kw>
+    <kw>LoadOption</kw>
+    <kw>SqlConnection</kw>
+    <kw>try</kw>
+    <kw>SqlCommand</kw>
+    <kw>catch</kw>
+    <kw>throw</kw>
+    <kw>finally</kw>
+    <kw>null</kw>
+  </keyword>
+</keywordlist>

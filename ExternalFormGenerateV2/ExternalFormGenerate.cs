@@ -82,9 +82,11 @@ namespace ExternalFormGenerateV2
                                 begin
 	                                CREATE TABLE TB_CDS_EXTERNAL_FORM_MAPPING
 	                                (
+FORM_ID nvarchar(50),
 	                                FORM_VERSION_ID nvarchar(50),
                                 EXTERNAL_TABLE_NAME nvarchar(max),
-                                EXTERNAL_GRID_TABLES_NAME nvarchar(max)
+                                EXTERNAL_GRID_TABLES_NAME nvarchar(max),
+ENABLED bit
 	                                )
                                 end
                                 ";
@@ -405,7 +407,7 @@ namespace ExternalFormGenerateV2
 
 
             //新增主表
-            InsertFormMapping(((ItemList)cbxFormVersion.SelectedItem).Value, txtTableName.Text, json);
+            InsertFormMapping(((ItemList)cbxFormList.SelectedItem).Value,((ItemList)cbxFormVersion.SelectedItem).Value, txtTableName.Text, json, true);
             //新增表頭
             CreateFormFieldTable(txtTableName.Text, versionFields);
             //新增明細
@@ -514,27 +516,54 @@ MODIFY_TIME	datetime
             }
         }
 
-        private void InsertFormMapping(string formVersionId, string tableName, string gridTables)
+        private void InsertFormMapping(string formId,string formVersionId, string tableName, string gridTables,bool enabled)
         {
-            
-            string cmdTxt = @"  INSERT INTO [dbo].[TB_CDS_EXTERNAL_FORM_MAPPING]  
-(	 [FORM_VERSION_ID] , 
+            string cmdTxt = @"UPDATE TB_CDS_EXTERNAL_FORM_MAPPING
+                              SET ENABLED=0
+                            WHERE FORM_ID=@FORM_ID";
+            SqlCommand command = null;
+            try
+            {
+                m_conn.Open();
+                command = new SqlCommand(cmdTxt, m_conn);
+     
+                command.Parameters.AddWithValue("@FORM_ID", formId);
+       
+
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                m_conn.Close();
+            }
+
+            cmdTxt = @"  INSERT INTO [dbo].[TB_CDS_EXTERNAL_FORM_MAPPING]  
+(	
+    [FORM_ID],
+    [FORM_VERSION_ID] , 
 	 [EXTERNAL_TABLE_NAME] , 
-	 [EXTERNAL_GRID_TABLES_NAME]  
+	 [EXTERNAL_GRID_TABLES_NAME]  ,
+[ENABLED]
 ) 
  VALUES 
- (	 @FORM_VERSION_ID , 
+ (	 @FORM_ID,@FORM_VERSION_ID , 
 	 @EXTERNAL_TABLE_NAME , 
-	 @EXTERNAL_GRID_TABLES_NAME  
+	 @EXTERNAL_GRID_TABLES_NAME  ,@ENABLED
 )";
 
             try
             {
                 m_conn.Open();
-                SqlCommand command = new SqlCommand(cmdTxt, m_conn);
+                command = new SqlCommand(cmdTxt, m_conn);
                 command.Parameters.AddWithValue("@FORM_VERSION_ID", formVersionId);
-                command.Parameters.AddWithValue("@EXTERNAL_TABLE_NAME", tableName);
+                command.Parameters.AddWithValue("@FORM_ID", formId);
                 command.Parameters.AddWithValue("@EXTERNAL_GRID_TABLES_NAME", gridTables);
+                command.Parameters.AddWithValue("@EXTERNAL_TABLE_NAME", tableName);
+                command.Parameters.AddWithValue("@ENABLED", enabled);
 
                 command.ExecuteNonQuery();
             }

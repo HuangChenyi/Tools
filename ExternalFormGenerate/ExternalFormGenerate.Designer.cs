@@ -39,8 +39,9 @@
             this.txtDataBase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtFormCode = new System.Windows.Forms.TextBox();
             this.grpFormIfno = new System.Windows.Forms.GroupBox();
+            this.btnSchema = new System.Windows.Forms.Button();
+            this.btnDLL = new System.Windows.Forms.Button();
             this.cbxFormCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGenerateCode = new System.Windows.Forms.Button();
@@ -49,8 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbxFormList = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnDLL = new System.Windows.Forms.Button();
-            this.btnSchema = new System.Windows.Forms.Button();
+            this.txtFormCode = new System.Windows.Forms.RichTextBox();
             this.grpConnectInfo.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpFormIfno.SuspendLayout();
@@ -161,16 +161,6 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
-            // txtFormCode
-            // 
-            this.txtFormCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFormCode.Location = new System.Drawing.Point(3, 18);
-            this.txtFormCode.Multiline = true;
-            this.txtFormCode.Name = "txtFormCode";
-            this.txtFormCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFormCode.Size = new System.Drawing.Size(1014, 253);
-            this.txtFormCode.TabIndex = 0;
-            // 
             // grpFormIfno
             // 
             this.grpFormIfno.Controls.Add(this.btnSchema);
@@ -192,6 +182,26 @@
             this.grpFormIfno.TabIndex = 2;
             this.grpFormIfno.TabStop = false;
             this.grpFormIfno.Text = "表單資訊";
+            // 
+            // btnSchema
+            // 
+            this.btnSchema.Location = new System.Drawing.Point(868, 80);
+            this.btnSchema.Name = "btnSchema";
+            this.btnSchema.Size = new System.Drawing.Size(140, 28);
+            this.btnSchema.TabIndex = 24;
+            this.btnSchema.Text = "產生TableSchema";
+            this.btnSchema.UseVisualStyleBackColor = true;
+            this.btnSchema.Click += new System.EventHandler(this.btnSchema_Click);
+            // 
+            // btnDLL
+            // 
+            this.btnDLL.Location = new System.Drawing.Point(879, 46);
+            this.btnDLL.Name = "btnDLL";
+            this.btnDLL.Size = new System.Drawing.Size(129, 28);
+            this.btnDLL.TabIndex = 23;
+            this.btnDLL.Text = "產生程式(DLL)";
+            this.btnDLL.UseVisualStyleBackColor = true;
+            this.btnDLL.Click += new System.EventHandler(this.btnDLL_Click);
             // 
             // cbxFormCategory
             // 
@@ -270,25 +280,14 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "表單名稱:";
             // 
-            // btnDLL
+            // txtFormCode
             // 
-            this.btnDLL.Location = new System.Drawing.Point(879, 46);
-            this.btnDLL.Name = "btnDLL";
-            this.btnDLL.Size = new System.Drawing.Size(129, 28);
-            this.btnDLL.TabIndex = 23;
-            this.btnDLL.Text = "產生程式(DLL)";
-            this.btnDLL.UseVisualStyleBackColor = true;
-            this.btnDLL.Click += new System.EventHandler(this.btnDLL_Click);
-            // 
-            // btnSchema
-            // 
-            this.btnSchema.Location = new System.Drawing.Point(868, 80);
-            this.btnSchema.Name = "btnSchema";
-            this.btnSchema.Size = new System.Drawing.Size(140, 28);
-            this.btnSchema.TabIndex = 24;
-            this.btnSchema.Text = "產生TableSchema";
-            this.btnSchema.UseVisualStyleBackColor = true;
-            this.btnSchema.Click += new System.EventHandler(this.btnSchema_Click);
+            this.txtFormCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFormCode.Location = new System.Drawing.Point(3, 18);
+            this.txtFormCode.Name = "txtFormCode";
+            this.txtFormCode.Size = new System.Drawing.Size(1014, 253);
+            this.txtFormCode.TabIndex = 0;
+            this.txtFormCode.Text = "";
             // 
             // ExternalFormGenerate
             // 
@@ -304,7 +303,6 @@
             this.grpConnectInfo.ResumeLayout(false);
             this.grpConnectInfo.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.grpFormIfno.ResumeLayout(false);
             this.grpFormIfno.PerformLayout();
             this.ResumeLayout(false);
@@ -315,7 +313,6 @@
 
         private System.Windows.Forms.GroupBox grpConnectInfo;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtFormCode;
         private System.Windows.Forms.GroupBox grpFormIfno;
         private System.Windows.Forms.TextBox txtServerName;
         private System.Windows.Forms.Label label1;
@@ -336,5 +333,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDLL;
         private System.Windows.Forms.Button btnSchema;
+        private System.Windows.Forms.RichTextBox txtFormCode;
     }
 }

@@ -392,7 +392,9 @@ namespace ExternalFormGenerate
             }
         }
 
+        private void txtFormCode_TextChanged(object sender, EventArgs e)
+        {
 
-   
+        }
     }
 }

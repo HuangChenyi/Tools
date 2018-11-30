@@ -28,15 +28,8 @@ namespace GenTableSchema
             //    ep.SaveAs(createStream);//存檔
             //}
 
-            using (FileStream fs = new FileStream(@"D://abc.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                ExcelPackage epp = new ExcelPackage();
-                epp.Load(fs);
-
-                var ws = epp.Workbook.Worksheets[1];
-            }
-
-            return;
+           
+           // return;
 
             Data data = new Data();
 

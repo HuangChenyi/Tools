@@ -75,20 +75,20 @@
             this.menuLogin,
             this.menuExit});
             this.功能ToolStripMenuItem.Name = "功能ToolStripMenuItem";
-            this.功能ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.功能ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.功能ToolStripMenuItem.Text = "功能";
             // 
             // menuLogin
             // 
             this.menuLogin.Name = "menuLogin";
-            this.menuLogin.Size = new System.Drawing.Size(100, 22);
+            this.menuLogin.Size = new System.Drawing.Size(98, 22);
             this.menuLogin.Text = "登入";
             this.menuLogin.Click += new System.EventHandler(this.menuLogin_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(100, 22);
+            this.menuExit.Size = new System.Drawing.Size(98, 22);
             this.menuExit.Text = "關閉";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
@@ -97,13 +97,13 @@
             this.說明ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAbout});
             this.說明ToolStripMenuItem.Name = "說明ToolStripMenuItem";
-            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.說明ToolStripMenuItem.Text = "說明";
             // 
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(161, 22);
+            this.menuAbout.Size = new System.Drawing.Size(159, 22);
             this.menuAbout.Text = "關於SQLHelper";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
@@ -129,10 +129,10 @@
             this.treeTable.SelectedImageIndex = 0;
             this.treeTable.Size = new System.Drawing.Size(348, 528);
             this.treeTable.TabIndex = 0;
-            this.treeTable.DoubleClick += new System.EventHandler(this.treeTable_DoubleClick);
-            this.treeTable.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeTable_DragEnter);
             this.treeTable.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeTable_AfterExpand);
             this.treeTable.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeTable_ItemDrag);
+            this.treeTable.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeTable_DragEnter);
+            this.treeTable.DoubleClick += new System.EventHandler(this.treeTable_DoubleClick);
             // 
             // imageList1
             // 
@@ -183,19 +183,19 @@
             this.menuSelectAll,
             this.menuCopy});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 48);
             // 
             // menuSelectAll
             // 
             this.menuSelectAll.Name = "menuSelectAll";
-            this.menuSelectAll.Size = new System.Drawing.Size(124, 22);
+            this.menuSelectAll.Size = new System.Drawing.Size(122, 22);
             this.menuSelectAll.Text = "全選文字";
             this.menuSelectAll.Click += new System.EventHandler(this.menuSelectAll_Click);
             // 
             // menuCopy
             // 
             this.menuCopy.Name = "menuCopy";
-            this.menuCopy.Size = new System.Drawing.Size(124, 22);
+            this.menuCopy.Size = new System.Drawing.Size(122, 22);
             this.menuCopy.Text = "複製";
             this.menuCopy.Click += new System.EventHandler(this.menuCopy_Click);
             // 
@@ -258,7 +258,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SQLHelper";
-            this.Text = "SQLHelperV1.0";
+            this.Text = "SQLHelperV1.3";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

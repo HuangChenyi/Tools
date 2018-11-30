@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAKeyGenerate", "RSAKeyGen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLHelper", "SQLHelper\SQLHelper.csproj", "{24BD3963-F477-4919-BFBF-1ADAE657680B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShangxianForm", "ShangxianForm\ShangxianForm.csproj", "{37C4FDAF-7054-48BD-9E1A-F7224C442C87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,14 @@ Global
 		{24BD3963-F477-4919-BFBF-1ADAE657680B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24BD3963-F477-4919-BFBF-1ADAE657680B}.Release|x86.ActiveCfg = Release|Any CPU
 		{24BD3963-F477-4919-BFBF-1ADAE657680B}.Release|x86.Build.0 = Release|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Debug|x86.Build.0 = Debug|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Release|x86.ActiveCfg = Release|Any CPU
+		{37C4FDAF-7054-48BD-9E1A-F7224C442C87}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

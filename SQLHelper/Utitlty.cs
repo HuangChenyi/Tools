@@ -38,8 +38,15 @@ namespace SQLHelper
             SqlConnection conn = new SqlConnection(string.Format("data source='{0}';User Id='{1}';Password='{2}';Max Pool Size=300" , serverName , sid , pwd));
             DataTable dt = new DataTable();
 
-            string cmdTxt = @"exec sys.sp_databases";
-            
+            string cmdTxt = @"       SELECT  DB_NAME(dbid)AS DATABASE_NAME
+FROM sysdatabases
+ORDER BY dbid";
+
+//            SELECT dbid, DB_NAME(dbid)AS DB_NAME
+//FROM sysdatabases
+//ORDER BY dbid
+
+
             try
             {
                 conn.Open();

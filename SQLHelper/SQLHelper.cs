@@ -268,7 +268,7 @@ namespace SQLHelper
 
         private void menuAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SQLHelper V1.3  By \r\n Copyright 2010 一等一科技" , "SQLHelper");
+            MessageBox.Show("SQLHelper V1.4  By \r\n Copyright 2018 CY Huang" , "SQLHelper");
         }
 
         private void menuCopy_Click(object sender, EventArgs e)

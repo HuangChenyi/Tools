@@ -1,6 +1,6 @@
 ﻿namespace ShangxianForm
 {
-    partial class Form1
+    partial class ShangxianForm
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -43,16 +43,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.gridForm = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cbOption = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnRun = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnScript = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFormVersionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbOption = new System.Windows.Forms.ComboBox();
             this.grpConnectInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -216,49 +216,6 @@
             this.gridForm.Size = new System.Drawing.Size(779, 316);
             this.gridForm.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnRun);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.cbOption);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 23);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(779, 78);
-            this.panel1.TabIndex = 0;
-            // 
-            // cbOption
-            // 
-            this.cbOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbOption.FormattingEnabled = true;
-            this.cbOption.Items.AddRange(new object[] {
-            "刪除全系統所有表單版本/申請資料(僅保留最新發佈版本)",
-            "刪除選取表單版本/申請資料(無法刪除最新發佈版本)",
-            "刪除選取表單版本的所有申請資料"});
-            this.cbOption.Location = new System.Drawing.Point(103, 31);
-            this.cbOption.Name = "cbOption";
-            this.cbOption.Size = new System.Drawing.Size(487, 24);
-            this.cbOption.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 16);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "操作方式:";
-            // 
-            // btnRun
-            // 
-            this.btnRun.Location = new System.Drawing.Point(596, 17);
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(161, 51);
-            this.btnRun.TabIndex = 8;
-            this.btnRun.Text = "執行";
-            this.btnRun.UseVisualStyleBackColor = true;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "";
@@ -300,7 +257,50 @@
             this.ColumnFormVersionId.ReadOnly = true;
             this.ColumnFormVersionId.Visible = false;
             // 
-            // Form1
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnRun);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.cbOption);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 23);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(779, 78);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(596, 17);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(161, 51);
+            this.btnRun.TabIndex = 8;
+            this.btnRun.Text = "執行";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 16);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "操作方式:";
+            // 
+            // cbOption
+            // 
+            this.cbOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOption.FormattingEnabled = true;
+            this.cbOption.Items.AddRange(new object[] {
+            "刪除全系統所有表單版本/申請資料(僅保留最新發佈版本)",
+            "刪除選取表單版本/申請資料(無法刪除最新發佈版本)",
+            "刪除選取表單版本的所有申請資料"});
+            this.cbOption.Location = new System.Drawing.Point(103, 31);
+            this.cbOption.Name = "cbOption";
+            this.cbOption.Size = new System.Drawing.Size(487, 24);
+            this.cbOption.TabIndex = 0;
+            // 
+            // ShangxianForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,8 +310,8 @@
             this.Controls.Add(this.grpConnectInfo);
             this.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ShangxianForm";
+            this.Text = "表單版本初始小工具";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpConnectInfo.ResumeLayout(false);
             this.grpConnectInfo.PerformLayout();

@@ -10,19 +10,20 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShangxianForm
 {
-    public partial class Form1 : System.Windows.Forms.Form
+    public partial class ShangxianForm : System.Windows.Forms.Form
     {
         ManageFormCategoryUCO m_manageFormCategoryUco = null;
         DesignFormVersionUCO designFromVersionUco = null;
         DBHelper db = new DBHelper();
 
 
-        public Form1()
+        public ShangxianForm()
         {
             InitializeComponent();
 
@@ -32,7 +33,7 @@ namespace ShangxianForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionstring"].ConnectionString;
 
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -62,8 +63,24 @@ namespace ShangxianForm
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             string ConnectString = string.Format("data source='{0}';initial catalog='{1}';User Id='{2}';Password='{3}';Max Pool Size=300", txtServerName.Text, txtDataBase.Text, txtSid.Text, txtPwd.Text);
             //先儲存資訊
-            config.ConnectionStrings.ConnectionStrings["ConnectionString"].ConnectionString = ConnectString;
-            config.Save();
+            config.ConnectionStrings.ConnectionStrings["connectionstring"].ConnectionString = ConnectString;
+         
+
+            ConnectionStringSettings connStrSettings = new ConnectionStringSettings();
+            connStrSettings.Name = "connectionstring";
+            connStrSettings.ConnectionString = ConnectString;
+            // connStrSettings.ProviderName = providerName;
+
+         
+
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.Name);
+
+
+            designFromVersionUco = new DesignFormVersionUCO();
+            m_manageFormCategoryUco = new ManageFormCategoryUCO();
+
+            
 
             BindFormTree();
 

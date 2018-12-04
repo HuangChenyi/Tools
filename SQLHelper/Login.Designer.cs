@@ -91,6 +91,7 @@
             this.cbxDB.Size = new System.Drawing.Size(174, 20);
             this.cbxDB.TabIndex = 8;
             this.cbxDB.ValueMember = "DATABASE_NAME";
+            this.cbxDB.SelectedIndexChanged += new System.EventHandler(this.cbxDB_SelectedIndexChanged);
             this.cbxDB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbxDB_MouseDown);
             // 
             // txtSid

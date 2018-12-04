@@ -53,9 +53,10 @@ ORDER BY dbid";
                 SqlCommand command = new SqlCommand(cmdTxt , conn);
                 dt.Load(command.ExecuteReader(), LoadOption.OverwriteChanges);
             }
-            catch {  }
+            catch { dt.Columns.Add("DATABASE_NAME"); }
             finally
             {
+               
                 conn.Close();
                 conn.Dispose();
                 conn = null;

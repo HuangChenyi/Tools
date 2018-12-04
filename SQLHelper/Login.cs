@@ -66,7 +66,9 @@ namespace SQLHelper
         private void GetAllDataBase()
         {
             Utitlty utitlty = new Utitlty();
-            cbxDB.DataSource = utitlty.GetAllDB(txtServer.Text, txtSid.Text, txtPwd.Text) ;
+            DataTable dt = utitlty.GetAllDB(txtServer.Text, txtSid.Text, txtPwd.Text);
+
+            cbxDB.DataSource = dt;
         }
 
         private void txtServer_TextChanged(object sender, EventArgs e)
@@ -116,6 +118,9 @@ namespace SQLHelper
             this.Close();
         }
 
+        private void cbxDB_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

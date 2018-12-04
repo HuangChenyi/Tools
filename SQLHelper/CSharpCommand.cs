@@ -233,14 +233,14 @@ namespace SQLHelper
 
             foreach (string column in Columns)
             {
-                sb.Append(string.Format("\tcommand.AddWithValue(\"@{0}\", dr.{0} );\r\n", column));
+                sb.Append(string.Format("\tcommand.Parameters.AddWithValue(\"@{0}\", dr.{0} );\r\n", column));
             }
 
             foreach (string condition in Conditions)
             {
                 if (!Columns.Contains(condition))
                 {
-                    sb.Append(string.Format("\tcommand.AddWithValue(\"@{0}\", dr.{0} );\r\n", condition));
+                    sb.Append(string.Format("\tcommand.Parameters.AddWithValue(\"@{0}\", dr.{0} );\r\n", condition));
                 }
             }
 

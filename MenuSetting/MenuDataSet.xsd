@@ -108,7 +108,7 @@ SELECT MENU_ID, PARENT_MENU_ID, LINK_URL, IS_NEW_WINDOW, NORMAL_ICON_URL, MOUSE_
   <xs:element name="MenuDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MenuDataSet" msprop:Generator_UserDSName="MenuDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TB_EB_MENU" msprop:Generator_TableClassName="TB_EB_MENUDataTable" msprop:Generator_TableVarName="tableTB_EB_MENU" msprop:Generator_TablePropName="TB_EB_MENU" msprop:Generator_RowDeletingName="TB_EB_MENURowDeleting" msprop:Generator_RowChangingName="TB_EB_MENURowChanging" msprop:Generator_RowEvHandlerName="TB_EB_MENURowChangeEventHandler" msprop:Generator_RowDeletedName="TB_EB_MENURowDeleted" msprop:Generator_UserTableName="TB_EB_MENU" msprop:Generator_RowChangedName="TB_EB_MENURowChanged" msprop:Generator_RowEvArgName="TB_EB_MENURowChangeEvent" msprop:Generator_RowClassName="TB_EB_MENURow">
+        <xs:element name="TB_EB_MENU" msprop:Generator_TableClassName="TB_EB_MENUDataTable" msprop:Generator_TableVarName="tableTB_EB_MENU" msprop:Generator_RowChangedName="TB_EB_MENURowChanged" msprop:Generator_TablePropName="TB_EB_MENU" msprop:Generator_RowDeletingName="TB_EB_MENURowDeleting" msprop:Generator_RowChangingName="TB_EB_MENURowChanging" msprop:Generator_RowEvHandlerName="TB_EB_MENURowChangeEventHandler" msprop:Generator_RowDeletedName="TB_EB_MENURowDeleted" msprop:Generator_RowClassName="TB_EB_MENURow" msprop:Generator_UserTableName="TB_EB_MENU" msprop:Generator_RowEvArgName="TB_EB_MENURowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MENU_ID" msprop:Generator_ColumnVarNameInTable="columnMENU_ID" msprop:Generator_ColumnPropNameInRow="MENU_ID" msprop:Generator_ColumnPropNameInTable="MENU_IDColumn" msprop:Generator_UserColumnName="MENU_ID">
@@ -162,6 +162,7 @@ SELECT MENU_ID, PARENT_MENU_ID, LINK_URL, IS_NEW_WINDOW, NORMAL_ICON_URL, MOUSE_
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ORDERS" msprop:Generator_ColumnVarNameInTable="columnORDERS" msprop:Generator_ColumnPropNameInRow="ORDERS" msprop:Generator_ColumnPropNameInTable="ORDERSColumn" msprop:Generator_UserColumnName="ORDERS" type="xs:int" minOccurs="0" />
+              <xs:element name="Menu_Name" msprop:Generator_ColumnVarNameInTable="columnMenu_Name" msprop:Generator_ColumnPropNameInRow="Menu_Name" msprop:Generator_ColumnPropNameInTable="Menu_NameColumn" msprop:Generator_UserColumnName="Menu_Name" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

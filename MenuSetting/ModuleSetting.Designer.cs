@@ -44,8 +44,9 @@
             this.btnFolder = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.MenuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnMenuName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMenuId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEnable = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grpConnectInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -192,10 +193,13 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MenuID,
+            this.columnMenuName,
             this.ColumnStatus,
+            this.ColumnMenuId,
             this.ColumnEnable});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 23);
@@ -204,28 +208,46 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(500, 319);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
-            // MenuID
+            // columnMenuName
             // 
-            this.MenuID.Frozen = true;
-            this.MenuID.HeaderText = "選單名稱";
-            this.MenuID.Name = "MenuID";
-            this.MenuID.ReadOnly = true;
-            this.MenuID.Width = 250;
+            this.columnMenuName.DataPropertyName = "MENU_NAME";
+            this.columnMenuName.Frozen = true;
+            this.columnMenuName.HeaderText = "選單名稱";
+            this.columnMenuName.Name = "columnMenuName";
+            this.columnMenuName.ReadOnly = true;
+            this.columnMenuName.Width = 97;
             // 
             // ColumnStatus
             // 
+            this.ColumnStatus.DataPropertyName = "STATUS";
             this.ColumnStatus.Frozen = true;
             this.ColumnStatus.HeaderText = "狀態";
             this.ColumnStatus.Name = "ColumnStatus";
             this.ColumnStatus.ReadOnly = true;
+            this.ColumnStatus.Width = 65;
+            // 
+            // ColumnMenuId
+            // 
+            this.ColumnMenuId.DataPropertyName = "MENU_ID";
+            this.ColumnMenuId.Frozen = true;
+            this.ColumnMenuId.HeaderText = "MENU_ID";
+            this.ColumnMenuId.Name = "ColumnMenuId";
+            this.ColumnMenuId.ReadOnly = true;
+            this.ColumnMenuId.Visible = false;
+            this.ColumnMenuId.Width = 101;
             // 
             // ColumnEnable
             // 
             this.ColumnEnable.Frozen = true;
-            this.ColumnEnable.HeaderText = "變更狀態";
+            this.ColumnEnable.HeaderText = "操作";
             this.ColumnEnable.Name = "ColumnEnable";
             this.ColumnEnable.ReadOnly = true;
+            this.ColumnEnable.Text = "變更狀態";
+            this.ColumnEnable.UseColumnTextForButtonValue = true;
+            this.ColumnEnable.Width = 46;
             // 
             // ModuleSetting
             // 
@@ -266,8 +288,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MenuID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnMenuName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMenuId;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnEnable;
     }
 }

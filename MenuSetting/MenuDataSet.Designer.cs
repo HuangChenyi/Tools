@@ -297,6 +297,8 @@ namespace MenuSetting {
             
             private global::System.Data.DataColumn columnORDERS;
             
+            private global::System.Data.DataColumn columnMenu_Name;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TB_EB_MENUDataTable() {
@@ -404,6 +406,14 @@ namespace MenuSetting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Menu_NameColumn {
+                get {
+                    return this.columnMenu_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +449,7 @@ namespace MenuSetting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TB_EB_MENURow AddTB_EB_MENURow(string MENU_ID, string PARENT_MENU_ID, string LINK_URL, bool IS_NEW_WINDOW, string NORMAL_ICON_URL, string MOUSE_OVER_ICON_URL, string TYPE, string DATA_KEY, int ORDERS) {
+            public TB_EB_MENURow AddTB_EB_MENURow(string MENU_ID, string PARENT_MENU_ID, string LINK_URL, bool IS_NEW_WINDOW, string NORMAL_ICON_URL, string MOUSE_OVER_ICON_URL, string TYPE, string DATA_KEY, int ORDERS, string Menu_Name) {
                 TB_EB_MENURow rowTB_EB_MENURow = ((TB_EB_MENURow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MENU_ID,
@@ -450,7 +460,8 @@ namespace MenuSetting {
                         MOUSE_OVER_ICON_URL,
                         TYPE,
                         DATA_KEY,
-                        ORDERS};
+                        ORDERS,
+                        Menu_Name};
                 rowTB_EB_MENURow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTB_EB_MENURow);
                 return rowTB_EB_MENURow;
@@ -489,6 +500,7 @@ namespace MenuSetting {
                 this.columnTYPE = base.Columns["TYPE"];
                 this.columnDATA_KEY = base.Columns["DATA_KEY"];
                 this.columnORDERS = base.Columns["ORDERS"];
+                this.columnMenu_Name = base.Columns["Menu_Name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -512,6 +524,8 @@ namespace MenuSetting {
                 base.Columns.Add(this.columnDATA_KEY);
                 this.columnORDERS = new global::System.Data.DataColumn("ORDERS", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORDERS);
+                this.columnMenu_Name = new global::System.Data.DataColumn("Menu_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMenu_Name);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMENU_ID}, true));
                 this.columnMENU_ID.AllowDBNull = false;
@@ -800,6 +814,22 @@ namespace MenuSetting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Menu_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tableTB_EB_MENU.Menu_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'TB_EB_MENU\' 中資料行 \'Menu_Name\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableTB_EB_MENU.Menu_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPARENT_MENU_IDNull() {
                 return this.IsNull(this.tableTB_EB_MENU.PARENT_MENU_IDColumn);
             }
@@ -880,6 +910,18 @@ namespace MenuSetting {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetORDERSNull() {
                 this[this.tableTB_EB_MENU.ORDERSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMenu_NameNull() {
+                return this.IsNull(this.tableTB_EB_MENU.Menu_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMenu_NameNull() {
+                this[this.tableTB_EB_MENU.Menu_NameColumn] = global::System.Convert.DBNull;
             }
         }
         

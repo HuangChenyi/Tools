@@ -48,6 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBHelper.cs" />
+    <Compile Include="FunctionSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionSetting.Designer.cs">
+      <DependentUpon>FunctionSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupSetting.Designer.cs">
+      <DependentUpon>GroupSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FunctionSetting.resx">
+      <DependentUpon>FunctionSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupSetting.resx">
+      <DependentUpon>GroupSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModuleSetting.resx">
       <DependentUpon>ModuleSetting.cs</DependentUpon>
     </EmbeddedResource>

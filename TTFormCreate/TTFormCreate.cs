@@ -134,10 +134,18 @@ namespace TTFormCreate
             field = new FieldJsonObj() { FieldID = "SourceFormNum", Width = "", Height = "" };
             obj.HiddenColumns.Add(field);
 
+
+            ColumnsJsonObj col = new ColumnsJsonObj();
+            field = new FieldJsonObj() { FieldID ="NO", Width = "", Height = "" };
+            col.Columns.Add(field);
+
+            obj.Rows.Add(col);
+
+
             //表單Header欄位
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Element("head").Elements())
             {
-                ColumnsJsonObj col = new ColumnsJsonObj();
+                col = new ColumnsJsonObj();
                 field = new FieldJsonObj() { FieldID = node.Name.LocalName, Width = "", Height = "" };
                 col.Columns.Add(field);
 
@@ -147,7 +155,7 @@ namespace TTFormCreate
             //表單Detail欄位
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("body"))
             {
-                ColumnsJsonObj col = new ColumnsJsonObj();
+                 col = new ColumnsJsonObj();
                 field = new FieldJsonObj() { FieldID = node.Attribute("id").Value, Width = "", Height = "" };
                 col.Columns.Add(field);
 
@@ -163,6 +171,9 @@ namespace TTFormCreate
         private  string GetVersionXML(string xml)
         {
             XDocument doc = XDocument.Parse(xml);
+            string formNumberFieldStr = @"<FieldItem fieldId=""NO"" fieldName=""表單編號"" fieldSeq=""0"" fieldType=""autoNumber"" fieldRemark="""" DisplayLength=""0"" DecimalPoint=""0"" externalData="""" wsUrl="""" wsMethod="""" wsAuth="""" wsAccount="""" wsPassword="""" wsSystemValueSend="""" wsFormValueSend="""" wsGetBeforeTime="""" wsVariation="""" delFlag=""True"" fieldLength=""0"" fieldModify=""no"" fieldTrackID=""WKF"" FieldExternal=""False"" FieldFile="""" FieldFileType="""">
+    <fieldControlData fieldControlFlag="""" />
+  </FieldItem>";
             string hiddenFieldStr = "<FieldItem fieldId=\"A02\" fieldName=\"BB\" fieldSeq=\"6\" fieldType=\"hiddenField\" fieldRemark=\"\" DisplayLength=\"0\" DecimalPoint=\"0\" displayFieldName=\"True\" externalData=\"\" wsUrl=\"\" wsMethod=\"\" wsAuth=\"\" wsAccount=\"\" wsPassword=\"\" wsSystemValueSend=\"\" wsFormValueSend=\"\" wsGetBeforeTime=\"\" wsVariation=\"\" delFlag=\"True\" />";
             string singleLineFieldStr = @"
   <FieldItem fieldId=""A01"" fieldName=""AA"" fieldSeq=""4"" fieldType=""singleLineText"" fieldRemark="""" DisplayLength=""0"" DecimalPoint=""0"" displayFieldName=""True"" externalData=""False"" wsUrl="""" wsMethod="""" wsAuth=""False"" wsAccount="""" wsPassword="""" wsSystemValueSend="""" wsFormValueSend="""" wsGetBeforeTime=""False"" wsVariation=""False"" delFlag=""True"" fieldLength=""50"" fieldDefault="""" fieldModify=""yes"">
@@ -222,8 +233,11 @@ namespace TTFormCreate
 
 
             XElement xe = new XElement("VersionField");
-            int fieldseq = 0;
+            int fieldseq = 1;
             //表單Header欄位
+
+            xe.Add(XElement.Parse(formNumberFieldStr));
+
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Element("head").Elements())
             {
                 XElement field = null;

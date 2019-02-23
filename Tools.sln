@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploadPhoto", "UploadPhoto\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTFormCreate", "TTFormCreate\TTFormCreate.csproj", "{DEFE0BBB-AB8C-4D08-B064-71922F51C666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuSetting", "MenuSetting\MenuSetting.csproj", "{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,14 @@ Global
 		{DEFE0BBB-AB8C-4D08-B064-71922F51C666}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DEFE0BBB-AB8C-4D08-B064-71922F51C666}.Release|x86.ActiveCfg = Release|Any CPU
 		{DEFE0BBB-AB8C-4D08-B064-71922F51C666}.Release|x86.Build.0 = Release|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Debug|x86.Build.0 = Debug|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|x86.ActiveCfg = Release|Any CPU
+		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

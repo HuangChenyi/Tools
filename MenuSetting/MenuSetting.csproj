@@ -65,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MenuHelper.cs" />
     <Compile Include="ModuleSetting.cs">
       <SubType>Form</SubType>
     </Compile>

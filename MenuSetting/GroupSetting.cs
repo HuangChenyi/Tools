@@ -37,10 +37,8 @@ namespace MenuSetting
         public void BindGrid()
         {
 
-            string fileName = path + "/App_data/menu.xml";
-
-            XmlDocument xd = new XmlDocument();
-            xd.Load(fileName);
+          
+            MenuHepler mh = new MenuHepler(path);
 
             DBHelper db = new DBHelper();
             MenuDataSet ds= db.GetMenuData(menuId);
@@ -64,16 +62,9 @@ namespace MenuSetting
                     menuId = dr.MENU_ID;
                 }
 
-                string menuName = "";
+                string menuName = mh.FindKey(menuId);
 
-                try
-                {
-                    menuName = xd.SelectSingleNode($"./Menus/menu[@id='{menuId}']/culture[@name='zh-tw']").InnerText;
-                }
-                catch
-                {
-                    menuName = menuId;
-                }
+             
                 dt.Rows.Add(menuId, menuName, status);
             }
 

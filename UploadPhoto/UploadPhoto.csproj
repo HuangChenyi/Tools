@@ -130,6 +130,11 @@
   <ItemGroup>
     <None Include="Web References\File\FileCenter.disco" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="RefDLL\Ede.Uof.EIP.Organization.dll" />
+    <Content Include="RefDLL\Ede.Uof.EIP.Organization.Util.dll" />
+    <Content Include="RefDLL\Ede.Uof.Utility.Data.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

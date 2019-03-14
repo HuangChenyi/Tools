@@ -99,6 +99,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Ede.Uof.EIP.Organization.Util.dll" />
+    <Content Include="DLL\Ede.Uof.Utility.Data.dll" />
+    <Content Include="DLL\Ede.Uof.Utility.dll" />
+    <Content Include="DLL\Ede.Uof.WKF.Design.dll" />
+    <Content Include="DLL\Ede.Uof.WKF.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

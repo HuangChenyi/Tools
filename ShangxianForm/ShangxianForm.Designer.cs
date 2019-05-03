@@ -299,6 +299,7 @@
             this.cbOption.Name = "cbOption";
             this.cbOption.Size = new System.Drawing.Size(487, 24);
             this.cbOption.TabIndex = 0;
+            this.cbOption.SelectedIndexChanged += new System.EventHandler(this.cbOption_SelectedIndexChanged);
             // 
             // ShangxianForm
             // 
@@ -311,6 +312,7 @@
             this.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ShangxianForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "表單版本初始小工具";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpConnectInfo.ResumeLayout(false);

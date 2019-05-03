@@ -283,6 +283,7 @@
             // txtFormCode
             // 
             this.txtFormCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFormCode.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtFormCode.Location = new System.Drawing.Point(3, 18);
             this.txtFormCode.Name = "txtFormCode";
             this.txtFormCode.Size = new System.Drawing.Size(1014, 253);

@@ -247,6 +247,8 @@ namespace ExternalFormGenerate
                     txtFormCode.Text += formUtil.GetFieldXmlCode(versionField);
                 }
 
+
+                txtFormCode.Text += "   // return formElement.OuterXML;";
             }
 
         }

@@ -22,6 +22,13 @@ namespace ShangxianForm
         DesignFormVersionUCO designFromVersionUco = null;
         DBHelper db = new DBHelper();
 
+        private bool m_IsReload = false;
+
+        public bool IsReload {
+            get { return m_IsReload; }
+            set { m_IsReload = value; }
+                }
+
 
         public ShangxianForm()
         {
@@ -56,6 +63,12 @@ namespace ShangxianForm
             leftIndex = connectionString.IndexOf("'", rightIndex + 1);
             rightIndex = connectionString.IndexOf("'", leftIndex + 1);
             txtPwd.Text = connectionString.Substring(leftIndex + 1, rightIndex - leftIndex - 1);
+
+
+            if(IsReload==true)
+            {
+                BindFormTree();
+            }
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -75,13 +88,19 @@ namespace ShangxianForm
 
             config.Save(ConfigurationSaveMode.Full);
             ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.Name);
-
+            
 
             designFromVersionUco = new DesignFormVersionUCO();
             m_manageFormCategoryUco = new ManageFormCategoryUCO();
+            db = new DBHelper();
 
-            
+            //ShangxianForm form = new ShangxianForm();
+            //form.IsReload = true;
 
+           
+            //form.Show( );
+
+            //this.Hide();
             BindFormTree();
 
 
@@ -149,7 +168,7 @@ namespace ShangxianForm
                 row.Cells["ColumnScript"].Value = db.GetFormScriptConut(formVersionId);
                 row.Cells["ColumnTask"].Value = db.GetFormTaskConut(formVersionId);
 
-                if (formVersionId == usingVersionId)
+                if (formVersionId == usingVersionId && cbOption.SelectedIndex != 2)
                     row.Cells[0].ReadOnly = true;
             }
         }
@@ -258,6 +277,9 @@ namespace ShangxianForm
             }
         }
 
-       
+        private void cbOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGrid();
+        }
     }
 }

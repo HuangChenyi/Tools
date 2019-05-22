@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalFormGenerate", "ExternalFormGenerate\ExternalFormGenerate.csproj", "{2B9A6FAA-4B7F-498C-96B1-6E61F9C2C765}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTFormCreate", "TTFormCreate\TTFormCreate.csproj", "{DEFE0BBB-AB8C-4D08-B064-71922F51C666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuSetting", "MenuSetting\MenuSetting.csproj", "{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseGen", "LicenseGen\LicenseGen.csproj", "{F624E59A-8178-40EB-9B39-DDD26B49CCAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,8 +101,19 @@ Global
 		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5CCBA9E-2AD2-48BE-B7AA-B1FFD5EB877A}.Release|x86.Build.0 = Release|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Debug|x86.Build.0 = Debug|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Release|x86.ActiveCfg = Release|Any CPU
+		{F624E59A-8178-40EB-9B39-DDD26B49CCAB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F792AB8-C39A-4C59-9074-AEB10A384A11}
 	EndGlobalSection
 EndGlobal

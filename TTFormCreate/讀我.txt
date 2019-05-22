@@ -1,0 +1,36 @@
+﻿1.請到WEB.CONFIG，加入以下語法，也請一併修改TT的URL
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="TIPTOPGateWayBinding" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://192.168.123.210/web/ws/r/aws_efsrv"
+          binding="basicHttpBinding" bindingConfiguration="TIPTOPGateWayBinding"
+          contract="GetTTGateWay.TIPTOPGateWayPortType" name="TIPTOPGateWayPortType" />
+    </client>
+  </system.serviceModel>
+
+  2.請執行初始
+
+  --附件上傳路徑
+  INSERT INTO TB_EB_CONFIG
+  ([ITEM],[VALUE])
+  VALUES
+  ('UOFTT_UploadFilePath' , 'D:\\技轉暫存_鈊象\\UOF_Training\\UOF13.1\\CDS\\TTAttach')
+
+    --UOF站台網址
+  INSERT INTO TB_EB_CONFIG
+  ([ITEM],[VALUE])
+  VALUES
+  ('UOFTT_UploadFileURL' , 'http://localhost/UOF13.1/')
+
+
+      --TT站台網址
+  INSERT INTO TB_EB_CONFIG
+  ([ITEM],[VALUE])
+  VALUES
+  ('TT_UploadFileURL' , ' http://192.168.2.20/cgi-bin/fglccgi/toptest/tiptop/')
+
+ 

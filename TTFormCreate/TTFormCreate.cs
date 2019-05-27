@@ -155,13 +155,33 @@ namespace TTFormCreate
             //表單Detail欄位
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("body"))
             {
+                if(node.Attribute("id") != null)
+                { 
                  col = new ColumnsJsonObj();
                 field = new FieldJsonObj() { FieldID = node.Attribute("id").Value, Width = "", Height = "" };
                 col.Columns.Add(field);
+                }
+                else
+                {
+                    col = new ColumnsJsonObj();
+                    field = new FieldJsonObj() { FieldID = "detail", Width = "", Height = "" };
+                    col.Columns.Add(field);
+                }
 
                 obj.Rows.Add(col);
             }
 
+            //表單Detail欄位(附件)
+            foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("attachment"))
+            {
+             
+                    col = new ColumnsJsonObj();
+                    field = new FieldJsonObj() { FieldID = "attach", Width = "", Height = "" };
+                    col.Columns.Add(field);
+               
+
+                obj.Rows.Add(col);
+            }
             //LAY OUT
             //  Console.WriteLine();
 
@@ -230,7 +250,15 @@ namespace TTFormCreate
         <visibleUser Flag=""&lt;UserSet&gt;&lt;/UserSet&gt;&#xD;&#xA;"" Filler=""False"" />
       </DataGridItem>
 ";
-
+            string dataGridLinkFieldStr = @"
+      <DataGridItem fieldId=""link"" fieldName=""link"" fieldSeq=""0"" fieldType=""hyperLink"" fieldRemark="""" DisplayLength=""0"" DecimalPoint=""0"" displayFieldName=""True"" externalData="""" wsUrl="""" wsMethod="""" wsAuth="""" wsAccount="""" wsPassword="""" wsSystemValueSend="""" wsFormValueSend="""" wsGetBeforeTime="""" wsVariation="""" delFlag=""True"" fieldDefault="""" fieldModify=""no"" linkTarget=""_blank"" linkTip="""" DialogHeight=""0"" DialogWidth=""0"">
+        <fieldControlData fieldControlFlag=""yes"" />
+        <fieldModifyData Flag=""accede"" />
+        <allowApplicentUser Flag=""False"" />
+        <allowOtherUser Flag=""False"" />
+        <visibleControl Flag=""NoLimit"" />
+        <visibleUser Flag=""&lt;UserSet&gt;&lt;/UserSet&gt;&#xD;&#xA;"" Filler=""False"" />
+      </DataGridItem>";
 
             XElement xe = new XElement("VersionField");
             int fieldseq = 1;
@@ -241,16 +269,23 @@ namespace TTFormCreate
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Element("head").Elements())
             {
                 XElement field = null;
-                switch (node.Attribute("type").Value)
+                if (node.Attribute("type") != null)
                 {
-                    case "0":
-                        field = XElement.Parse(singleLineFieldStr);
-                        break;
-                    case "1":
-                        field = XElement.Parse(numberFieldStr);
-                        break;
+                    switch (node.Attribute("type").Value)
+                    {
+                        case "0":
+                            field = XElement.Parse(singleLineFieldStr);
+                            break;
+                        case "1":
+                            field = XElement.Parse(numberFieldStr);
+                            break;
+                    }
                 }
-
+                else
+                {
+                    //找不到屬性就用文字欄位
+                    field = XElement.Parse(singleLineFieldStr);
+                }
                 field.Attribute("fieldId").Value = node.Name.LocalName;
                 field.Attribute("fieldName").Value = node.Name.LocalName;
                 field.Attribute("fieldSeq").Value = fieldseq.ToString();
@@ -264,22 +299,41 @@ namespace TTFormCreate
             {
                 XElement field = XElement.Parse(dataGridFieldStr);
 
-                field.Attribute("fieldId").Value = node.Attribute("id").Value;
-                field.Attribute("fieldName").Value = node.Attribute("id").Value;
+                if (node.Attribute("id") != null)
+                {
+                    field.Attribute("fieldId").Value = node.Attribute("id").Value;
+                    field.Attribute("fieldName").Value = node.Attribute("id").Value;
+                    field.Attribute("fieldSeq").Value = fieldseq.ToString();
+                }
+                else
+                {
+                    field.Attribute("fieldId").Value = "detail";
+                    field.Attribute("fieldName").Value = "detail";
+                    field.Attribute("fieldSeq").Value = fieldseq.ToString();
+                }
+                fieldseq++;
                 int detailfieldseq = 0;
                 foreach (var detailNode in node.Element("record").Elements())
                 {
                     XElement detailField = null;
-                    switch (detailNode.Attribute("type").Value)
-                    {
-                        case "0":
-                            detailField = XElement.Parse(dataGridSingleLineFieldStr);
-                            break;
-                        case "1":
-                            detailField = XElement.Parse(dataGridNumberFieldStr);
-                            break;
-                    }
 
+                    if (node.Attribute("type") != null)
+                    {
+                        switch (detailNode.Attribute("type").Value)
+                        {
+                            case "0":
+                                detailField = XElement.Parse(dataGridSingleLineFieldStr);
+                                break;
+                            case "1":
+                                detailField = XElement.Parse(dataGridNumberFieldStr);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        //找不到屬性就用文字欄位
+                        detailField = XElement.Parse(dataGridSingleLineFieldStr);
+                    }
                     detailField.Attribute("fieldId").Value = detailNode.Name.LocalName;
                     detailField.Attribute("fieldName").Value = detailNode.Name.LocalName;
                     detailField.Attribute("fieldSeq").Value = detailfieldseq.ToString();
@@ -289,43 +343,72 @@ namespace TTFormCreate
                 }
 
                 xe.Add(field);
-
-                //隱藏欄位
-                XElement hiddenField = null;
-
-                //PlantID
-                hiddenField = XElement.Parse(hiddenFieldStr);
-                hiddenField.Attribute("fieldId").Value= "PlantID";
-                hiddenField.Attribute("fieldName").Value = "PlantID";
-                hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
-                xe.Add(hiddenField);
-                fieldseq++;
-
-                //ProgramID
-                hiddenField = XElement.Parse(hiddenFieldStr);
-                hiddenField.Attribute("fieldId").Value = "ProgramID";
-                hiddenField.Attribute("fieldName").Value = "ProgramID";
-                hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
-                xe.Add(hiddenField);
-                fieldseq++;
-
-                //SourceFormID
-                hiddenField = XElement.Parse(hiddenFieldStr);
-                hiddenField.Attribute("fieldId").Value = "SourceFormID";
-                hiddenField.Attribute("fieldName").Value = "SourceFormID";
-                hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
-                xe.Add(hiddenField);
-                fieldseq++;
-
-                //SourceFormNum
-                hiddenField = XElement.Parse(hiddenFieldStr);
-                hiddenField.Attribute("fieldId").Value = "SourceFormNum";
-                hiddenField.Attribute("fieldName").Value = "SourceFormNum";
-                hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
-                xe.Add(hiddenField);
-                fieldseq++;
-
             }
+
+            //附件欄位
+
+            //表單明細欄位
+            foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("attachment"))
+            {
+                XElement field = XElement.Parse(dataGridFieldStr);
+
+             
+                    field.Attribute("fieldId").Value = "attach";
+                    field.Attribute("fieldName").Value = "attach";
+                field.Attribute("fieldSeq").Value = fieldseq.ToString();
+                fieldseq++;
+                int detailfieldseq = 0;
+               
+                    XElement detailField = null;
+
+        
+                    detailField = XElement.Parse(dataGridLinkFieldStr);
+   
+                    detailField.Attribute("fieldId").Value = "link";
+                    detailField.Attribute("fieldName").Value = "link";
+                detailField.Attribute("fieldSeq").Value = detailfieldseq.ToString();
+                    detailfieldseq++;
+
+                    field.Element("dataGrid").Add(detailField);
+                
+
+                xe.Add(field);
+            }
+
+            //隱藏欄位
+            XElement hiddenField = null;
+
+            //PlantID
+            hiddenField = XElement.Parse(hiddenFieldStr);
+            hiddenField.Attribute("fieldId").Value = "PlantID";
+            hiddenField.Attribute("fieldName").Value = "PlantID";
+            hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
+            xe.Add(hiddenField);
+            fieldseq++;
+
+            //ProgramID
+            hiddenField = XElement.Parse(hiddenFieldStr);
+            hiddenField.Attribute("fieldId").Value = "ProgramID";
+            hiddenField.Attribute("fieldName").Value = "ProgramID";
+            hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
+            xe.Add(hiddenField);
+            fieldseq++;
+
+            //SourceFormID
+            hiddenField = XElement.Parse(hiddenFieldStr);
+            hiddenField.Attribute("fieldId").Value = "SourceFormID";
+            hiddenField.Attribute("fieldName").Value = "SourceFormID";
+            hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
+            xe.Add(hiddenField);
+            fieldseq++;
+
+            //SourceFormNum
+            hiddenField = XElement.Parse(hiddenFieldStr);
+            hiddenField.Attribute("fieldId").Value = "SourceFormNum";
+            hiddenField.Attribute("fieldName").Value = "SourceFormNum";
+            hiddenField.Attribute("fieldSeq").Value = fieldseq.ToString();
+            xe.Add(hiddenField);
+            fieldseq++;
 
             return xe.ToString();
         }

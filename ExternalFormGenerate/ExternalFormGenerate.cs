@@ -242,13 +242,19 @@ namespace ExternalFormGenerate
                 txtFormCode.Text += formUtil.GetFormFieldValueXmlCode();
                 XmlNodeList versionFieldList = xmlDoc.SelectNodes("/VersionField/FieldItem");
 
+                //郵件樣板的程式碼
+                string messageContentStr = formUtil.GetMessageContentCode();
+             
+
                 foreach (XmlNode versionField in versionFieldList)
                 {
                     txtFormCode.Text += formUtil.GetFieldXmlCode(versionField);
+                    messageContentStr+= formUtil.GetFieldMessageContentCode(versionField);
                 }
 
-
-                txtFormCode.Text += "   // return formElement.OuterXML;";
+                txtFormCode.Text += messageContentStr;
+               txtFormCode.Text += @"
+                                // return formElement.OuterXml;";
             }
 
         }

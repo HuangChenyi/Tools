@@ -167,5 +167,34 @@ namespace ExternalFormGenerate
             dr.{0} = xmlDoc.SelectSingleNode(""/Form/FormFieldValue/FieldItem[@fieldId='{0}']"").Attributes[""fieldValue""].Value;
 ", versionField.Attributes["fieldId"].Value, versionField.Attributes["fieldName"].Value);
         }
+
+        internal string GetMessageContentCode()
+        {
+            return @"
+            XmlElement MessageContentElement = xmlDoc.CreateElement(""MessageContent""); 
+            XmlElement VersionFieldElement = xmlDoc.CreateElement(""VersionField""); 
+            MessageContentElement.AppendChild(VersionFieldElement);
+            formElement.AppendChild(MessageContentElement);
+                ";
+        }
+
+        internal string GetFieldMessageContentCode(XmlNode versionField)
+        {
+            return string.Format(@"
+            //欄位{0}的郵件様板的值,請把該欄位的郵件様板的值塞入FieldValue的InnerXML
+            XmlElement MsgFieldItem_{1}Element = xmlDoc.CreateElement(""FieldItem""); 
+            XmlElement MsgFieldValue_{1}Element = xmlDoc.CreateElement(""FieldValue""); 
+            MsgFieldItem_{1}Element.SetAttribute(""fieldId"",""{1}"");
+            MsgFieldItem_{1}Element.SetAttribute(""enableSearch"",""true"");
+            MsgFieldValue_{1}Element.InnerXml="""";
+            VersionFieldElement.AppendChild(MsgFieldItem_{1}Element);
+            MsgFieldItem_{1}Element.AppendChild(MsgFieldValue_{1}Element);
+
+
+", 
+            versionField.Attributes["fieldName"].Value, 
+            versionField.Attributes["fieldId"].Value);
+            
+        }
     }
 }

@@ -236,6 +236,7 @@ namespace ExternalFormGenerate
             {0}Element.SetAttribute(""fieldId"" , ""{0}"");
             {0}Element.InnerXml="""";
             {0}Element.SetAttribute(""realValue"", """");
+            {0}Element.SetAttribute(""ConditionValue"", """");
             {0}Element.SetAttribute(""fillerName"" , userName);
             {0}Element.SetAttribute(""fillerUserGuid"", userGuid);
             {0}Element.SetAttribute(""fillerAccount"", account);

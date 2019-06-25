@@ -31,6 +31,15 @@
   INSERT INTO TB_EB_CONFIG
   ([ITEM],[VALUE])
   VALUES
-  ('TT_UploadFileURL' , ' http://192.168.2.20/cgi-bin/fglccgi/toptest/tiptop/')
+  ('TT_UploadFileURL' , 'http://192.168.2.20/cgi-bin/fglccgi/toptest/tiptop/')
 
  
+       --TT傳入資訊是否為工號
+  INSERT INTO TB_EB_CONFIG
+  ([ITEM],[VALUE])
+  VALUES
+  ('TT_IsEmpNo' , '0')
+
+  --結案事件
+  FILE:Lib.TipTop
+  TYPE: Lib.TipTop.Trigger.EndFormTrigger

@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ede.Uof.EIP.Location, Version=15.0.6949.47671, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Ede.Uof.EIP.Location.dll</HintPath>
+    </Reference>
     <Reference Include="Ede.Uof.EIP.Organization.Util, Version=13.10.6772.33416, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\技轉暫存_光洋\升級Demo\UOF_Training\UOF13.1\bin\Ede.Uof.EIP.Organization.Util.dll</HintPath>
@@ -40,6 +44,10 @@
     <Reference Include="Ede.Uof.Utility, Version=13.10.6772.33416, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\技轉暫存_光洋\升級Demo\UOF_Training\UOF13.1\bin\Ede.Uof.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Ede.Uof.Utility.Configuration, Version=15.0.6949.47671, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Ede.Uof.Utility.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Ede.Uof.Utility.Data">
       <HintPath>..\..\..\技轉暫存_光洋\升級Demo\UOF_Training\UOF13.1\bin\Ede.Uof.Utility.Data.dll</HintPath>
@@ -100,7 +108,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DLL\Ede.Uof.EIP.Location.dll" />
     <Content Include="DLL\Ede.Uof.EIP.Organization.Util.dll" />
+    <Content Include="DLL\Ede.Uof.Utility.Configuration.dll" />
     <Content Include="DLL\Ede.Uof.Utility.Data.dll" />
     <Content Include="DLL\Ede.Uof.Utility.dll" />
     <Content Include="DLL\Ede.Uof.WKF.Design.dll" />

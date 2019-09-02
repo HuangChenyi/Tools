@@ -18,7 +18,16 @@ namespace UploadPhoto
         {
             try
             {
-                
+
+                Console.WriteLine("請選擇作業方式(1/2):");
+                Console.WriteLine("1.上傳個人照片");
+                Console.WriteLine("2.上傳簽名檔:");
+                var key =Console.ReadKey();
+                Console.WriteLine("");
+                Console.WriteLine("作業執行中....");
+
+
+           
                 Authentication auth = new Authentication();
                 string account = System.Configuration.ConfigurationManager.AppSettings["account"]; ;
                 string pwd = System.Configuration.ConfigurationManager.AppSettings["password"];
@@ -39,10 +48,13 @@ namespace UploadPhoto
 
                 foreach(FileInfo file in files)
                 {
+                    string cmdTxt = "";
                     DatabaseHelper db = new DatabaseHelper();
-
+                    object obj = null;
                     string uofaccount = file.Name.Split('.')[0];
                     string userGuid = new UserUCO().GetGUID(uofaccount);
+                    FileSystem fs = new FileSystem(token);
+                    string fileGroupId = "";
 
                     if (string.IsNullOrEmpty(userGuid))
                     {
@@ -50,30 +62,78 @@ namespace UploadPhoto
                         continue;
                     }
 
-                    string cmdTxt = @"SELECT COUNT(1) FROM TB_EB_EMPL
+
+                    switch(key.KeyChar)
+                    {
+                        case '1':
+                            cmdTxt = @"SELECT COUNT(1) FROM TB_EB_EMPL
                                         WHERE ISNULL(PHOTO,'') ='' AND  USER_GUID=@USER_GUID";
 
-                    db.AddParameter("USER_GUID", userGuid);
-                    object obj = db.ExecuteScalar(cmdTxt);
+                            db.AddParameter("USER_GUID", userGuid);
+                            obj = db.ExecuteScalar(cmdTxt);
 
-                    if(Convert.ToInt32(obj) ==0)
-                    {
-                        Console.WriteLine(GetLog($@"帳號{uofaccount}己先維謢相片，不再上傳!"));
-                        continue;
-                    }
+                            if (Convert.ToInt32(obj) == 0)
+                            {
+                                Console.WriteLine(GetLog($@"帳號{uofaccount}己先維謢相片，不再上傳!"));
+                                continue;
+                            }
 
-                    db = new DatabaseHelper();
-                    FileSystem fs = new FileSystem(token);
-                   string fileGroupId = fs.UploadFileToUOF(file.FullName, File.FileTarget.Personal);
+                            db = new DatabaseHelper();
 
-                    cmdTxt = @"UPDATE TB_EB_EMPL
+                            fileGroupId = fs.UploadFileToUOF(file.FullName, File.FileTarget.Personal);
+
+                            cmdTxt = @"UPDATE TB_EB_EMPL
                                         SET PHOTO=@PHOTO
                                         WHERE USER_GUID=@USER_GUID";
-                    
-                    db.AddParameter("PHOTO" , fileGroupId);
-                    db.AddParameter("USER_GUID", userGuid);
-                    db.ExecuteNonQuery(cmdTxt);
-                    Console.WriteLine(GetLog($@"帳號{uofaccount}上傳完成!"));
+
+                            db.AddParameter("PHOTO", fileGroupId);
+                            db.AddParameter("USER_GUID", userGuid);
+                            db.ExecuteNonQuery(cmdTxt);
+                            Console.WriteLine(GetLog($@"帳號{uofaccount}上傳完成!"));
+                            break;
+                        case '2':
+                            cmdTxt = @"SELECT COUNT(1) FROM TB_EB_EMPL_ELEC_SIGN
+                                        WHERE  USER_GUID=@USER_GUID";
+
+                            db.AddParameter("USER_GUID", userGuid);
+                            obj = db.ExecuteScalar(cmdTxt);
+
+                            if (Convert.ToInt32(obj) > 0)
+                            {
+                                Console.WriteLine(GetLog($@"帳號{uofaccount}己先維謢簽名檔，不再上傳!"));
+                                continue;
+                            }
+
+                            fileGroupId = fs.UploadFileToUOF(file.FullName, File.FileTarget.Personal);
+
+                            cmdTxt = @"  INSERT INTO [dbo].[TB_EB_EMPL_ELEC_SIGN]  
+                                        (	 [SIGN_GUID] , 
+	                                         [USER_GUID] , 
+	                                         [ELEC_SIGN] , 
+	                                         [DEFAULT_SIGN] , 
+	                                         [CREATE_DATE]  
+                                        ) 
+                                         VALUES 
+                                         (	 @SIGN_GUID , 
+	                                         @USER_GUID , 
+	                                         @ELEC_SIGN , 
+	                                         @DEFAULT_SIGN , 
+	                                         @CREATE_DATE  
+                                        )";
+
+                            db.AddParameter("@SIGN_GUID", Guid.NewGuid().ToString());
+                            db.AddParameter("@USER_GUID", userGuid);
+                            db.AddParameter("@ELEC_SIGN", fileGroupId);
+                            db.AddParameter("@DEFAULT_SIGN", true);
+                            db.AddParameter("@CREATE_DATE", DateTime.Now);
+                            db.ExecuteNonQuery(cmdTxt);
+
+
+                            Console.WriteLine(GetLog($@"帳號{uofaccount}上傳完成!"));
+                            break;
+                    }
+
+                   
                 }
 
                

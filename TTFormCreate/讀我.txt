@@ -38,7 +38,7 @@
   INSERT INTO TB_EB_CONFIG
   ([ITEM],[VALUE])
   VALUES
-  ('TT_IsEmpNo' , '0')
+  ('TT_IsEmpNo' , 'false')
 
   --結案事件
   FILE:Lib.TipTop

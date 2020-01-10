@@ -57,10 +57,20 @@ namespace ExternalFormGenerate
         {
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            string  ConnectString = string.Format("data source='{0}';initial catalog='{1}';User Id='{2}';Password='{3}';Max Pool Size=300", txtServerName.Text, txtDataBase.Text, txtSid.Text, txtPwd.Text);
+            string ConnectString = string.Format("data source='{0}';initial catalog='{1}';User Id='{2}';Password='{3}';Max Pool Size=300", txtServerName.Text, txtDataBase.Text, txtSid.Text, txtPwd.Text);
             //先儲存資訊
-            config.ConnectionStrings.ConnectionStrings["ConnectionString"].ConnectionString = ConnectString;
-            config.Save();
+            config.ConnectionStrings.ConnectionStrings["connectionstring"].ConnectionString = ConnectString;
+
+
+            ConnectionStringSettings connStrSettings = new ConnectionStringSettings();
+            connStrSettings.Name = "connectionstring";
+            connStrSettings.ConnectionString = ConnectString;
+            // connStrSettings.ProviderName = providerName;
+
+
+
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.Name);
             m_conn = new SqlConnection(ConnectString);
             DisableControl();
             BindFormInfo();

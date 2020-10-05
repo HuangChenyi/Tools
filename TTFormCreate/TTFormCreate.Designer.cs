@@ -43,6 +43,7 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
             this.grpConnectInfo = new System.Windows.Forms.GroupBox();
+            this.cbAttach = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpConnectInfo.SuspendLayout();
@@ -175,6 +176,7 @@
             // 
             // grpConnectInfo
             // 
+            this.grpConnectInfo.Controls.Add(this.cbAttach);
             this.grpConnectInfo.Controls.Add(this.btnRun);
             this.grpConnectInfo.Controls.Add(this.btnConnect);
             this.grpConnectInfo.Controls.Add(this.txtPwd);
@@ -193,6 +195,16 @@
             this.grpConnectInfo.TabIndex = 5;
             this.grpConnectInfo.TabStop = false;
             this.grpConnectInfo.Text = "連線資訊";
+            // 
+            // cbAttach
+            // 
+            this.cbAttach.AutoSize = true;
+            this.cbAttach.Location = new System.Drawing.Point(893, 75);
+            this.cbAttach.Name = "cbAttach";
+            this.cbAttach.Size = new System.Drawing.Size(155, 20);
+            this.cbAttach.TabIndex = 16;
+            this.cbAttach.Text = "附件採用附件欄位";
+            this.cbAttach.UseVisualStyleBackColor = true;
             // 
             // TTFormCreate
             // 
@@ -232,6 +244,7 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.GroupBox grpConnectInfo;
+        private System.Windows.Forms.CheckBox cbAttach;
     }
 }
 

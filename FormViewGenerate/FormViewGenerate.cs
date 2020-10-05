@@ -178,7 +178,7 @@ namespace FormViewGenerate
 
         private void FormViewGenerate_Load(object sender, EventArgs e)
         {
-            if(DateTime.Today > DateTime.Parse("2020/02/01"))
+            if(DateTime.Today > DateTime.Parse("2020/04/01"))
             {
                 MessageBox.Show("試用已過期");
                 this.Close();

@@ -15,6 +15,15 @@ namespace GenTableSchema
     {
         static void Main(string[] args)
         {
+
+        if(DateTime.Today > Convert.ToDateTime("2021/01/01"))
+            {
+                Console.WriteLine("使用期限已過，請定期取得新版");
+                Console.WriteLine("請按任意鍵結束");
+                Console.ReadKey();
+                return;
+            }
+
             // 
             //ExcelWorksheet sheet2 = ep.Workbook.Worksheets.Add("Index");
 
@@ -36,6 +45,7 @@ namespace GenTableSchema
             SchemaDataSet ds = new SchemaDataSet();
             ds = data.GetAllTables();
 
+            string log = "";
 
             using (FileStream fs = new FileStream(@"temp.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -62,6 +72,11 @@ namespace GenTableSchema
                         ep.Workbook.Worksheets[1].Cells[tableSheetIndex + 1, 2].Value = tableName;
 
                         ep.Workbook.Worksheets[1].Cells[tableSheetIndex + 1, 3].Value = tableSummary;
+
+                        if(tableSummary == "")
+                        {
+                            log += $"Table {tableName} 描述為空白!! \r\n";
+                        }
 
                         if ( tableSheetIndex!= 1 && tableSheetIndex% 2 == 1)
                         {
@@ -120,6 +135,12 @@ namespace GenTableSchema
                             {
                                 SetCell(ep.Workbook.Worksheets[2].Cells[columnSheetIndex, 9] , "");
                             }
+
+                            if (cDr.IsSUMMARYNull() || cDr.SUMMARY=="")
+                            {
+                                log += $"Table {tableName}-{cDr.COLUMN_NAME} 欄位描述為空白!! \r\n";
+                            }
+
                             columnSheetIndex++;
                         }
 
@@ -153,7 +174,15 @@ namespace GenTableSchema
                         ep.SaveAs(createStream);//存檔
                     }//end using
 
-
+                    if(log!="")
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("******************************************************");
+                        Console.WriteLine(log);
+                        Console.WriteLine("******************************************************");
+                        Console.WriteLine("請按任意鍵結束");
+                        Console.ReadKey();
+                    }
 
                 }
             }

@@ -16,6 +16,8 @@ namespace TTFormCreate
 {
     public partial class TTFormCreate : Form
     {
+
+        LanguageLibary lib = new LanguageLibary();
         public TTFormCreate()
         {
             InitializeComponent();
@@ -23,6 +25,9 @@ namespace TTFormCreate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
+          
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["connectionstring"].ConnectionString;
 
             if (string.IsNullOrEmpty(connectionString))
@@ -114,6 +119,8 @@ namespace TTFormCreate
             string layout = GetLayOutJson(txtTTCode.Text);
             string versionFields = GetVersionXML(txtTTCode.Text);
 
+
+
             DBHelper db = new DBHelper();
             db.UpdateFormVersionXM(treeFormList.SelectedNode.Tag.ToString() , versionFields, layout);
             MessageBox.Show("執行成功!");
@@ -152,9 +159,13 @@ namespace TTFormCreate
                 obj.Rows.Add(col);
             }
 
+            int bodySeq = 1;
             //表單Detail欄位
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("body"))
             {
+                //空單身
+                if (string.IsNullOrEmpty(node.Value))
+                    break;
                 if(node.Attribute("id") != null)
                 { 
                  col = new ColumnsJsonObj();
@@ -164,10 +175,10 @@ namespace TTFormCreate
                 else
                 {
                     col = new ColumnsJsonObj();
-                    field = new FieldJsonObj() { FieldID = "detail", Width = "", Height = "" };
+                    field = new FieldJsonObj() { FieldID = "detail"+ bodySeq, Width = "", Height = "" };
                     col.Columns.Add(field);
                 }
-
+                bodySeq++;
                 obj.Rows.Add(col);
             }
 
@@ -260,12 +271,27 @@ namespace TTFormCreate
         <visibleUser Flag=""&lt;UserSet&gt;&lt;/UserSet&gt;&#xD;&#xA;"" Filler=""False"" />
       </DataGridItem>";
 
+            string fileFieldStr = @"  <FieldItem fieldId=""A05"" fieldName=""檔案欄位"" fieldSeq=""4"" fieldType=""fileButton"" fieldRemark="""" DisplayLength=""0"" DecimalPoint=""0"" displayFieldName=""True"" externalData="""" wsUrl="""" wsMethod="""" wsAuth="""" wsAccount="""" wsPassword="""" wsSystemValueSend="""" wsFormValueSend="""" wsGetBeforeTime="""" wsVariation="""" delFlag=""True"" embedPDF=""False"" embedWidth=""0"" embedHeight=""0"" PDFWidthStyle="""">
+    <fieldControlData fieldControlFlag=""yes"" />
+    <fieldModifyData Flag=""accede"" />
+    <allowApplicentUser Flag=""False"" />
+    <allowOtherUser Flag=""False"" />
+  </FieldItem>";
+
+
+            //程式代號
+            string programId = doc.Element("Request").Element("RequestContent").Element("Form").Element("ProgramID").Value;
+
+
+
             XElement xe = new XElement("VersionField");
             int fieldseq = 1;
             //表單Header欄位
 
-            xe.Add(XElement.Parse(formNumberFieldStr));
-
+            XElement formNumberField = XElement.Parse(formNumberFieldStr);
+            formNumberField.Add(CreateCultureNode(programId, "NO"));
+            xe.Add(formNumberField);
+          
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Element("head").Elements())
             {
                 XElement field = null;
@@ -291,12 +317,20 @@ namespace TTFormCreate
                 field.Attribute("fieldSeq").Value = fieldseq.ToString();
                 fieldseq++;
 
+                XElement cultureNode = CreateCultureNode( programId, node.Name.LocalName);
+
+                field.Add(cultureNode);
+
                 xe.Add(field);
             }
 
+            int bodySeq = 1;
             //表單明細欄位
             foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("body"))
-            {
+            { //空單身
+                if (string.IsNullOrEmpty(node.Value))
+                    break;
+
                 XElement field = XElement.Parse(dataGridFieldStr);
 
                 if (node.Attribute("id") != null)
@@ -307,10 +341,11 @@ namespace TTFormCreate
                 }
                 else
                 {
-                    field.Attribute("fieldId").Value = "detail";
-                    field.Attribute("fieldName").Value = "detail";
+                    field.Attribute("fieldId").Value = "detail"+ bodySeq;
+                    field.Attribute("fieldName").Value = "detail"+ bodySeq;
                     field.Attribute("fieldSeq").Value = fieldseq.ToString();
                 }
+                bodySeq++;
                 fieldseq++;
                 int detailfieldseq = 0;
                 foreach (var detailNode in node.Element("record").Elements())
@@ -339,6 +374,10 @@ namespace TTFormCreate
                     detailField.Attribute("fieldSeq").Value = detailfieldseq.ToString();
                     detailfieldseq++;
 
+                    XElement cultureNode = CreateCultureNode(programId, detailNode.Name.LocalName);
+
+                    detailField.Add(cultureNode);
+
                     field.Element("dataGrid").Add(detailField);
                 }
 
@@ -348,33 +387,53 @@ namespace TTFormCreate
             //附件欄位
 
             //表單明細欄位
-            foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("attachment"))
-            {
-                XElement field = XElement.Parse(dataGridFieldStr);
 
-             
+            if (!cbAttach.Checked)
+            {
+                foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("attachment"))
+                {
+                    XElement field = XElement.Parse(dataGridFieldStr);
+
+
                     field.Attribute("fieldId").Value = "attach";
                     field.Attribute("fieldName").Value = "attach";
-                field.Attribute("fieldSeq").Value = fieldseq.ToString();
-                fieldseq++;
-                int detailfieldseq = 0;
-               
+                    field.Attribute("fieldSeq").Value = fieldseq.ToString();
+                    fieldseq++;
+                    int detailfieldseq = 0;
+
                     XElement detailField = null;
 
-        
+
                     detailField = XElement.Parse(dataGridLinkFieldStr);
-   
+
                     detailField.Attribute("fieldId").Value = "link";
                     detailField.Attribute("fieldName").Value = "link";
-                detailField.Attribute("fieldSeq").Value = detailfieldseq.ToString();
+                    detailField.Attribute("fieldSeq").Value = detailfieldseq.ToString();
                     detailfieldseq++;
 
                     field.Element("dataGrid").Add(detailField);
-                
 
-                xe.Add(field);
+
+                    xe.Add(field);
+                }
             }
+            else
+            {
+                foreach (var node in doc.Element("Request").Element("RequestContent").Element("Form").Element("ContentText").Elements("attachment"))
+                {
+                    XElement field = XElement.Parse(fileFieldStr);
 
+
+                    field.Attribute("fieldId").Value = "attach";
+                    field.Attribute("fieldName").Value = "attach";
+                    field.Attribute("fieldSeq").Value = fieldseq.ToString();
+                    fieldseq++;
+
+
+
+                    xe.Add(field);
+                }
+            }
             //隱藏欄位
             XElement hiddenField = null;
 
@@ -411,6 +470,66 @@ namespace TTFormCreate
             fieldseq++;
 
             return xe.ToString();
+        }
+
+        private XElement CreateCultureNode(string programId, string fieldId)
+        {
+            //多國語系樣板
+            //<Culture>
+            //  <item id="en-US" fieldName="" fieldRemark="" enable="False" />
+            //  <item id="ja-JP" fieldName="" fieldRemark="" enable="False" />
+            //  <item id="zh-CN" fieldName="" fieldRemark="" enable="False" />
+            //  <item id="zh-TW" fieldName="" fieldRemark="" enable="True" />
+            //</Culture>
+
+            XElement xe = new XElement("Culture");
+
+            XElement usNode = CreateCultureItemNode("en-US", programId,  fieldId);
+            XElement jpNode = CreateCultureItemNode("ja-JP", programId, fieldId);
+            XElement cnNode = CreateCultureItemNode("zh-CN", programId, fieldId);
+           XElement twNode = CreateCultureItemNode("zh-TW", programId, fieldId);
+            XElement viNode = CreateCultureItemNode("vi", programId, fieldId);
+            xe.Add(usNode);
+            xe.Add(jpNode);
+            xe.Add(cnNode);
+            xe.Add(twNode);
+            xe.Add(viNode);
+
+            return xe;
+
+        }
+
+        private XElement CreateCultureItemNode(string culture, string programId, string fieldId)
+        {
+            XElement xe = new XElement("item", 
+                                                new XAttribute("id", culture), 
+                                                new XAttribute("fieldName",""), 
+                                                new XAttribute("fieldRemark",""), 
+                                                new XAttribute("enable","False"));
+
+         
+
+
+            string fieldName = lib.FindText(programId, fieldId, culture);
+           
+            if(fieldName != "")
+            {
+                xe.Attribute("fieldName").Value = fieldName;
+                xe.Attribute("enable").Value = "True";
+            }
+            else
+            {
+                xe.Attribute("fieldName").Value = fieldId;
+                xe.Attribute("enable").Value = "True";
+            }
+
+            if(fieldId == "NO")
+            {
+                xe.Attribute("fieldName").Value = "表單編號";
+                xe.Attribute("enable").Value = "True";
+            }
+
+            return xe;
         }
 
         private void treeFormList_AfterSelect(object sender, TreeViewEventArgs e)

@@ -1,4 +1,6 @@
-﻿1.請到WEB.CONFIG，加入以下語法，也請一併修改TT的URL
+﻿aws_efcli2.4gl
+
+1.請到WEB.CONFIG，加入以下語法，也請一併修改TT的URL
   <system.serviceModel>
     <bindings>
       <basicHttpBinding>
@@ -6,13 +8,15 @@
       </basicHttpBinding>
     </bindings>
     <client>
-      <endpoint address="http://192.168.123.210/web/ws/r/aws_efsrv"
+      <endpoint address="http://192.168.10.212/web/ws/r/aws_efsrv"
           binding="basicHttpBinding" bindingConfiguration="TIPTOPGateWayBinding"
           contract="GetTTGateWay.TIPTOPGateWayPortType" name="TIPTOPGateWayPortType" />
     </client>
   </system.serviceModel>
 
   2.請執行初始
+
+  建立資料夾 \CDS\\TTAttach
 
   --附件上傳路徑
   INSERT INTO TB_EB_CONFIG

@@ -16,7 +16,7 @@ namespace GenTableSchema
         static void Main(string[] args)
         {
 
-        if(DateTime.Today > Convert.ToDateTime("2021/01/01"))
+        if(DateTime.Today > Convert.ToDateTime("2021/04/01"))
             {
                 Console.WriteLine("使用期限已過，請定期取得新版");
                 Console.WriteLine("請按任意鍵結束");

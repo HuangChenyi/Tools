@@ -17,10 +17,59 @@ namespace BPMFieldCopyTool
             InitializeComponent();
         }
 
+
+        public int RowIndex { get; set; }
+
+        public bool RowChecked { get { return cbRow.Checked; } }
+
         private void FieldRowThree_Load(object sender, EventArgs e)
         {
-            pnlFieldInfoLeft.Width = (gbRow.Width - 55) / 3;
-            pnlFieldInfoRight.Width = (gbRow.Width - 55) / 3;
+         
+        }
+
+        private void FitWidth()
+        {
+           // pnlFieldInfoLeft.Width = (gbRow.Width - 55) / 3;
+          //  pnlFieldInfoRight.Width = (gbRow.Width - 55) / 3;
+        }
+
+        public void SetFieldInfoRight(FieldInfo info)
+        {
+            pnlFieldInfoRight.Controls.Add(info);
+        }
+
+        public void SetFieldInfoLeft(FieldInfo info)
+        {
+
+            pnlFieldInfoLeft.Controls.Add(info);
+
+           
+
+        }
+
+        public void SetFieldInfoCenter(FieldInfo info)
+        {
+            pnlFieldInfoCenter.Controls.Add(info);
+          
+        }
+
+        private void cbRow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRow.Checked)
+            {
+                pnlFieldInfoLeft.Enabled = false;
+                pnlFieldInfoRight.Enabled = false;
+                pnlFieldInfoCenter.Enabled = false;
+                this.BackColor = Color.Blue;
+
+            }
+            else
+            {
+                pnlFieldInfoLeft.Enabled = true;
+                pnlFieldInfoRight.Enabled = true;
+                pnlFieldInfoCenter.Enabled = true;
+                this.BackColor = Color.FromArgb(255, 240, 240, 240);
+            }
         }
     }
 }

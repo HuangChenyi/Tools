@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlFieldInfo = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.cbRow = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -48,6 +48,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // pnlFieldInfo
+            // 
+            this.pnlFieldInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFieldInfo.Location = new System.Drawing.Point(58, 23);
+            this.pnlFieldInfo.Name = "pnlFieldInfo";
+            this.pnlFieldInfo.Size = new System.Drawing.Size(623, 124);
+            this.pnlFieldInfo.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.cbRow);
@@ -57,14 +65,6 @@
             this.panel1.Size = new System.Drawing.Size(55, 124);
             this.panel1.TabIndex = 0;
             // 
-            // pnlFieldInfo
-            // 
-            this.pnlFieldInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFieldInfo.Location = new System.Drawing.Point(58, 23);
-            this.pnlFieldInfo.Name = "pnlFieldInfo";
-            this.pnlFieldInfo.Size = new System.Drawing.Size(623, 124);
-            this.pnlFieldInfo.TabIndex = 1;
-            // 
             // cbRow
             // 
             this.cbRow.AutoSize = true;
@@ -73,6 +73,7 @@
             this.cbRow.Size = new System.Drawing.Size(15, 14);
             this.cbRow.TabIndex = 0;
             this.cbRow.UseVisualStyleBackColor = true;
+            this.cbRow.CheckedChanged += new System.EventHandler(this.cbRow_CheckedChanged);
             // 
             // FieldRow
             // 

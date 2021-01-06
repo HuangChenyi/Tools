@@ -20,6 +20,24 @@ namespace BPMFieldCopyTool
         public void SetFieldInfo(string info)
         {
             lblFieldInfo.Text = info;
+
+            if (info == "EmptyField")
+                cbField.Visible = false;
+
+        }
+
+        private void cbField_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbField.Checked)
+            {
+               
+                this.BackColor = Color.Yellow;
+            }
+            else
+            {
+            
+                this.BackColor = Color.FromArgb(255, 240, 240, 240);
+            }
         }
     }
 }

@@ -39,7 +39,7 @@
             this.txtDataBase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grpFormIfno = new System.Windows.Forms.GroupBox();
-            this.btnSchema = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.cbxFormCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGenerateForm = new System.Windows.Forms.Button();
@@ -47,9 +47,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbxFormList = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlFieldCollection = new System.Windows.Forms.Panel();
+            this.gbFieldCollection = new System.Windows.Forms.GroupBox();
             this.grpConnectInfo.SuspendLayout();
             this.grpFormIfno.SuspendLayout();
+            this.gbFieldCollection.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpConnectInfo
@@ -149,7 +151,7 @@
             // 
             // grpFormIfno
             // 
-            this.grpFormIfno.Controls.Add(this.btnSchema);
+            this.grpFormIfno.Controls.Add(this.btnCopy);
             this.grpFormIfno.Controls.Add(this.cbxFormCategory);
             this.grpFormIfno.Controls.Add(this.label7);
             this.grpFormIfno.Controls.Add(this.btnGenerateForm);
@@ -167,14 +169,15 @@
             this.grpFormIfno.TabStop = false;
             this.grpFormIfno.Text = "表單資訊";
             // 
-            // btnSchema
+            // btnCopy
             // 
-            this.btnSchema.Location = new System.Drawing.Point(868, 80);
-            this.btnSchema.Name = "btnSchema";
-            this.btnSchema.Size = new System.Drawing.Size(140, 28);
-            this.btnSchema.TabIndex = 24;
-            this.btnSchema.Text = "產生TableSchema";
-            this.btnSchema.UseVisualStyleBackColor = true;
+            this.btnCopy.Location = new System.Drawing.Point(868, 78);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(140, 28);
+            this.btnCopy.TabIndex = 24;
+            this.btnCopy.Text = "複製欄位";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // cbxFormCategory
             // 
@@ -197,9 +200,9 @@
             // 
             // btnGenerateForm
             // 
-            this.btnGenerateForm.Location = new System.Drawing.Point(879, 26);
+            this.btnGenerateForm.Location = new System.Drawing.Point(868, 26);
             this.btnGenerateForm.Name = "btnGenerateForm";
-            this.btnGenerateForm.Size = new System.Drawing.Size(129, 28);
+            this.btnGenerateForm.Size = new System.Drawing.Size(140, 28);
             this.btnGenerateForm.TabIndex = 20;
             this.btnGenerateForm.Text = "建立表單";
             this.btnGenerateForm.UseVisualStyleBackColor = true;
@@ -242,30 +245,42 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "表單名稱:";
             // 
-            // groupBox1
+            // pnlFieldCollection
             // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 188);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1030, 561);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
+            this.pnlFieldCollection.AutoScroll = true;
+            this.pnlFieldCollection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFieldCollection.Location = new System.Drawing.Point(3, 18);
+            this.pnlFieldCollection.Name = "pnlFieldCollection";
+            this.pnlFieldCollection.Size = new System.Drawing.Size(1024, 540);
+            this.pnlFieldCollection.TabIndex = 5;
+            // 
+            // gbFieldCollection
+            // 
+            this.gbFieldCollection.Controls.Add(this.pnlFieldCollection);
+            this.gbFieldCollection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbFieldCollection.Location = new System.Drawing.Point(0, 188);
+            this.gbFieldCollection.Name = "gbFieldCollection";
+            this.gbFieldCollection.Size = new System.Drawing.Size(1030, 561);
+            this.gbFieldCollection.TabIndex = 4;
+            this.gbFieldCollection.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1030, 749);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbFieldCollection);
             this.Controls.Add(this.grpFormIfno);
             this.Controls.Add(this.grpConnectInfo);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "BPM表單欄位複製小工具";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpConnectInfo.ResumeLayout(false);
             this.grpConnectInfo.PerformLayout();
             this.grpFormIfno.ResumeLayout(false);
             this.grpFormIfno.PerformLayout();
+            this.gbFieldCollection.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,7 +298,7 @@
         private System.Windows.Forms.TextBox txtDataBase;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox grpFormIfno;
-        private System.Windows.Forms.Button btnSchema;
+        private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.ComboBox cbxFormCategory;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnGenerateForm;
@@ -291,7 +306,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbxFormList;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel pnlFieldCollection;
+        private System.Windows.Forms.GroupBox gbFieldCollection;
     }
 }
 

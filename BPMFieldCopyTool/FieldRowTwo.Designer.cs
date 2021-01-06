@@ -42,7 +42,7 @@
             this.pnlFieldInfoLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlFieldInfoLeft.Location = new System.Drawing.Point(58, 23);
             this.pnlFieldInfoLeft.Name = "pnlFieldInfoLeft";
-            this.pnlFieldInfoLeft.Size = new System.Drawing.Size(296, 124);
+            this.pnlFieldInfoLeft.Size = new System.Drawing.Size(480, 124);
             this.pnlFieldInfoLeft.TabIndex = 1;
             // 
             // gbRow
@@ -54,16 +54,16 @@
             this.gbRow.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.gbRow.Location = new System.Drawing.Point(0, 0);
             this.gbRow.Name = "gbRow";
-            this.gbRow.Size = new System.Drawing.Size(684, 150);
+            this.gbRow.Size = new System.Drawing.Size(1000, 150);
             this.gbRow.TabIndex = 1;
             this.gbRow.TabStop = false;
             // 
             // pnlFieldInfoRight
             // 
             this.pnlFieldInfoRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFieldInfoRight.Location = new System.Drawing.Point(354, 23);
+            this.pnlFieldInfoRight.Location = new System.Drawing.Point(538, 23);
             this.pnlFieldInfoRight.Name = "pnlFieldInfoRight";
-            this.pnlFieldInfoRight.Size = new System.Drawing.Size(327, 124);
+            this.pnlFieldInfoRight.Size = new System.Drawing.Size(459, 124);
             this.pnlFieldInfoRight.TabIndex = 2;
             // 
             // panel1
@@ -83,6 +83,7 @@
             this.cbRow.Size = new System.Drawing.Size(15, 14);
             this.cbRow.TabIndex = 0;
             this.cbRow.UseVisualStyleBackColor = true;
+            this.cbRow.CheckedChanged += new System.EventHandler(this.cbRow_CheckedChanged);
             // 
             // FieldRowTwo
             // 
@@ -90,7 +91,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbRow);
             this.Name = "FieldRowTwo";
-            this.Size = new System.Drawing.Size(684, 150);
+            this.Size = new System.Drawing.Size(1000, 150);
             this.Leave += new System.EventHandler(this.FieldRowTwo_Leave);
             this.gbRow.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -106,5 +107,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox cbRow;
         private System.Windows.Forms.Panel pnlFieldInfoRight;
+
     }
 }
